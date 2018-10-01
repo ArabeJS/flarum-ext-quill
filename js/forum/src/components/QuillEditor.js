@@ -29,7 +29,7 @@ export default class QuillEditor extends Component {
     view() {
         const classNames = 'Composer-flexible ' + this.props.className;
         return (
-            <div className="TextEditor">
+            <div className="TextEditor Raafet">
                 <div className={classNames} config={this.configEditor.bind(this)} />
                 <ul className="TextEditor-controls Composer-footer">
                     {listItems(this.controlItems().toArray())}
@@ -44,7 +44,11 @@ export default class QuillEditor extends Component {
 
         this.quill = new Quill('.' + this.props.className, {
             modules: {
-                toolbar: true
+                toolbar: [['bold', 'italic'], ['link', 'image']]
+             },
+                placeholder: this.props.placeholder || '',
+                readOnly: !!this.props.disabled,
+                theme: 'snow'
             },
             placeholder: this.props.placeholder || '',
             readOnly: !!this.props.disabled,
